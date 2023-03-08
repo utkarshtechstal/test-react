@@ -10,7 +10,7 @@ const Buttons=(props) =>{
     color = "primary",
     loading = false,
     onClick = () => {
-      console.log("clicked");
+      console.log("Button.js | Line no. 13 | clicked:onClickHandler");
     },
     endIcon,
     startIcon,

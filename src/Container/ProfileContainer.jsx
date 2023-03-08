@@ -22,20 +22,11 @@ class ProfileContainer extends React.Component {
       userDetails:{},
       token:'',
       counter:0,
-      filteredData:[],
       loading:false
     }
   }
 
-  authToken = "";
-
   componentDidMount() {
-    let authToken = localStorage.getItem("token");
-    if(authToken??"" == ""){
-      this.props.history.push("/login");
-    }
-    this.authToken = authToken;
-    // this.setState({token:authToken});
     this.getData();
   }
 
@@ -75,9 +66,9 @@ class ProfileContainer extends React.Component {
       const res = await fetch(apiEndpoints.college.replace(":keyword",keyword), options);
       const result = await res.json();
       console.log("Api response | ProfileContainer.js | Line no. 67",result);
-      this.setState({dataList:result??[],filteredData:result??[],counter: this.state.counter + 1})
+      this.setState({dataList:result??[],counter: this.state.counter + 1})
     } catch (error) {
-      this.setState({dataList:[],filteredData:[],counter: this.state.counter + 1})
+      this.setState({dataList:[],counter: this.state.counter + 1})
       console.log("Api error | ProfileContainer.js | Line no. 71",error);
     }
     this.setState({loading:false})
@@ -117,10 +108,10 @@ class ProfileContainer extends React.Component {
             </Text>
           ) : null}
           <Stack justifyContent="center"
-            alignItems="center" padding={10}>
+            alignItems="center" padding={0}>
               <AppBar
                 style={{
-                  background:"blue",
+                  background:"black",
                   padding:"10px"
                 }}
                 position="sticky"
@@ -149,7 +140,7 @@ class ProfileContainer extends React.Component {
            Loading Data...
          </Text> : <Table
             columns={this.columns}
-            data={this.state.filteredData}
+            data={this.state.dataList}
             dataChangedCounter={this.state.counter}
             sx={{
               // minWidth: "400px",

@@ -84,7 +84,6 @@ const Row = ({
     });
     setRowData(updatedData);
   };
-  // console.log({ rowData, rowHasError });
 
   return (
     <TableRow>
@@ -155,6 +154,7 @@ class Table extends React.Component {
       isInitialized: false,
       dataChangedCounter: 0,
       refresh: false,
+      stickyHeader:false
     };
   }
 

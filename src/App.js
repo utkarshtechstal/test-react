@@ -2,24 +2,29 @@ import React from "react";
 import { Route, Redirect, Switch, BrowserRouter, Router } from "react-router-dom";
 import signIn from "./Pages/SignIn";
 import ProfilePage from "./Pages/profile";
+import { PrivateRoute, PublicRoute } from "./helper/route";
 
 
 
 
 const App = () => {
-
+    const auth = localStorage.getItem("token");
     return (
             <BrowserRouter>
                 <Switch>
                   <Redirect exact from="/" to="/login" />
-                  <Route
+                  <PublicRoute
                       exact
                       path="/login"
+                      auth={auth}
                       component={signIn}
+                      redirectTo="/profile"
                   />
-                  <Route
+                  <PrivateRoute
                       exact
                       path="/profile"
+                      auth={auth}
+                      redirectTo="/"
                       component={ProfilePage}
                   />
                   {/* <Route exact path="/not-found" component={NotFound} /> */}

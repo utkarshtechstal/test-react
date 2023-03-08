@@ -15,11 +15,6 @@ class SignInContainer extends React.Component {
     }
   }
 
-  componentDidMount(){
-    let authToken = localStorage.getItem("token");
-    if(authToken!=null) this.props.history.push("/profile");
-  }
-
   handleSignIn = async ()=>{
     const myMsal = new PublicClientApplication(msalConfig);
 

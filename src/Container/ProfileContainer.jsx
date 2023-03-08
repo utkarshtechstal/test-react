@@ -31,9 +31,9 @@ class ProfileContainer extends React.Component {
 
   componentDidMount() {
     let authToken = localStorage.getItem("token");
-    // if(authToken??"" == ""){
-    //   this.props.history.push("/login");
-    // }
+    if(authToken??"" == ""){
+      this.props.history.push("/login");
+    }
     this.authToken = authToken;
     // this.setState({token:authToken});
     this.getData();
